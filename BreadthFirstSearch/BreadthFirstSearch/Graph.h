@@ -10,7 +10,7 @@ class Graph
 private:
 	int V;
 	vector<list<int>> adjacentList;
-	bool contains(list<int> const &list, int const &element);
+	bool notContains(list<int> const &list, int const &element);
 	void printVisited(list<int> const& visited);
 	string printNodeName(int const &node);
 public:

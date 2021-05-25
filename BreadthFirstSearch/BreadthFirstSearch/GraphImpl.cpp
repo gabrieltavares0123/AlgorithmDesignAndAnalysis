@@ -2,9 +2,14 @@
 #include <iostream>
 #include "Constants.cpp"
 
-bool Graph::contains(const list<int>& list, int const &element)
+bool Graph::notContains(const list<int>& list, int const &element)
 {
-	return std::find(list.begin(), list.end(), element) != list.end();
+	if (std::find(list.begin(), list.end(), element) != list.end())
+	{
+		return false;
+	}
+
+	return true;
 }
 
 Graph::Graph(int const &V)
@@ -66,7 +71,7 @@ void Graph::BFS(int const &s)
 		list<int>::iterator it;
 		for (it = this->adjacentList[u].begin(); it != this->adjacentList[u].end(); ++it)
 		{
-			if (!this->contains(visited, *it))
+			if (this->notContains(visited, *it))
 			{
 				Q.push(*it);
 				cout << "Adding " << this->printNodeName(*it) << " to queue..." << endl;
