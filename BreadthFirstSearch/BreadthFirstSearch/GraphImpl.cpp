@@ -21,6 +21,7 @@ Graph::Graph(int const &V)
 void Graph::addEdge(int const &u, int const &v)
 {
 	this->adjacentList[u].push_back(v);
+	this->adjacentList[v].push_back(u);
 }
 
 string Graph::printNodeName(int const &node)
