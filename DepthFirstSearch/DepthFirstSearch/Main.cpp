@@ -53,7 +53,7 @@ int main()
     graph->addEdge(Bucharest, Fagaras);
 
     // Fagaras---Sibiu
-    graph->addEdge(Sibiu, Fagaras);
+    graph->addEdge(Fagaras, Sibiu);
 
     // Bucharest---Giurgiu
     graph->addEdge(Bucharest, Giurgiu);
@@ -103,5 +103,5 @@ int main()
     cout << "Enter the starting node: " << endl;
     int node;
     cin >> node;
-    graph->BFS(node);
+    graph->DFS(node);
 }

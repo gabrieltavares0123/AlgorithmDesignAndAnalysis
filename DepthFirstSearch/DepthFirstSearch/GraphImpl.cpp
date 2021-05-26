@@ -1,6 +1,9 @@
-#include "Graph.h"
 #include <iostream>
+#include <stack>
+
 #include "Constants.cpp"
+#include "Graph.h"
+
 
 bool Graph::notContains(const list<int>& list, int const &element)
 {
@@ -55,9 +58,9 @@ string Graph::printNodeName(int const &node)
 	return "";
 }
 
-void Graph::BFS(int const &s)
+void Graph::DFS(int const &s)
 {
-	queue<int> border;
+	stack<int> border;
 	border.push(s);
 	list<int> visited;
 
@@ -69,7 +72,7 @@ void Graph::BFS(int const &s)
 	{
 		while (!border.empty())
 		{
-			int u = border.front();
+			int u = border.top();
 			border.pop();
 			visited.push_back(u);
 
@@ -81,21 +84,10 @@ void Graph::BFS(int const &s)
 				if (this->notContains(visited, *it))
 				{
 					border.push(*it);
-					cout << "Adding " << this->printNodeName(*it) << " to queue..." << endl;
+					cout << "Adding " << this->printNodeName(*it) << " to stack..." << endl;
 				}
 			}
 			cout << "-----------------------" << endl;
 		}
 	}
-}
-
-void Graph::printVisited(list<int> const &visited)
-{
-	cout << "Printing current visited list..." << endl;
-	for (auto const &item : visited)
-	{
-		cout << item << ", ";
-	}
-
-	cout << endl;
 }
