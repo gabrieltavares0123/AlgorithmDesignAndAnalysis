@@ -60,29 +60,31 @@ void Graph::BFS(int const &s)
 	border.push(s);
 	list<int> visited;
 
-	while (!border.empty()) 
-	{
-		int u = border.front();
-		border.pop();
-		visited.push_back(u);
-
-		cout << "Visiting " << this->printNodeName(u) << "..." << endl;
-
-		list<int>::iterator it;
-		for (it = this->adjacentList[u].begin(); it != this->adjacentList[u].end(); ++it)
-		{
-			if (this->notContains(visited, *it))
-			{
-				border.push(*it);
-				cout << "Adding " << this->printNodeName(*it) << " to queue..." << endl;
-			}
-		}
-		cout << "-----------------------" << endl;
-	}
-
-	if (border.empty()) 
+	if (border.empty())
 	{
 		cout << "ERROR: Queue is empty." << endl;
+	}
+	else
+	{
+		while (!border.empty())
+		{
+			int u = border.front();
+			border.pop();
+			visited.push_back(u);
+
+			cout << "Visiting " << this->printNodeName(u) << "..." << endl;
+
+			list<int>::iterator it;
+			for (it = this->adjacentList[u].begin(); it != this->adjacentList[u].end(); ++it)
+			{
+				if (this->notContains(visited, *it))
+				{
+					border.push(*it);
+					cout << "Adding " << this->printNodeName(*it) << " to queue..." << endl;
+				}
+			}
+			cout << "-----------------------" << endl;
+		}
 	}
 }
 
