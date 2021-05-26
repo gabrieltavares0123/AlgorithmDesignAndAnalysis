@@ -56,14 +56,14 @@ string Graph::printNodeName(int const &node)
 
 void Graph::BFS(int const &s)
 {
-	queue<int> Q;
-	Q.push(s);
+	queue<int> border;
+	border.push(s);
 	list<int> visited;
 
-	while (!Q.empty()) 
+	while (!border.empty()) 
 	{
-		int u = Q.front();
-		Q.pop();
+		int u = border.front();
+		border.pop();
 		visited.push_back(u);
 
 		cout << "Visiting " << this->printNodeName(u) << "..." << endl;
@@ -73,14 +73,14 @@ void Graph::BFS(int const &s)
 		{
 			if (this->notContains(visited, *it))
 			{
-				Q.push(*it);
+				border.push(*it);
 				cout << "Adding " << this->printNodeName(*it) << " to queue..." << endl;
 			}
 		}
 		cout << "-----------------------" << endl;
 	}
 
-	if (Q.empty()) 
+	if (border.empty()) 
 	{
 		cout << "ERROR: Queue is empty." << endl;
 	}
