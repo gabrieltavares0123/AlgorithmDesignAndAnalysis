@@ -88,14 +88,3 @@ void Graph::BFS(int const &s)
 		}
 	}
 }
-
-void Graph::printVisited(list<int> const &visited)
-{
-	cout << "Printing current visited list..." << endl;
-	for (auto const &item : visited)
-	{
-		cout << item << ", ";
-	}
-
-	cout << endl;
-}
