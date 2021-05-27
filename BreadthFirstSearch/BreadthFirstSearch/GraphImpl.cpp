@@ -57,9 +57,9 @@ string Graph::printNodeName(int const &node)
 
 void Graph::BFS(int const &s)
 {
-	queue<int> border;
-	border.push(s);
-	list<int> visited;
+	list<int> border;
+	border.push_back(s);
+	list<int> explored;
 
 	if (border.empty())
 	{
@@ -70,18 +70,19 @@ void Graph::BFS(int const &s)
 		while (!border.empty())
 		{
 			int u = border.front();
-			border.pop();
-			visited.push_back(u);
+			border.pop_front();
+			explored.push_back(u);
 
-			cout << "Visiting " << this->printNodeName(u) << "..." << endl;
-
+			cout << "Exploring " << this->printNodeName(u) << "..." << endl;
 			list<int>::iterator it;
 			for (it = this->adjacentList[u].begin(); it != this->adjacentList[u].end(); ++it)
 			{
-				if (this->notContains(visited, *it))
+				int v = *it;
+				cout << "Visiting " << this->printNodeName(v) << "..." << endl;
+				if (this->notContains(explored, v) && this->notContains(border, v))
 				{
-					border.push(*it);
-					cout << "Adding " << this->printNodeName(*it) << " to queue..." << endl;
+					border.push_back(v);
+					cout << "Adding " << this->printNodeName(v) << " to queue..." << endl;
 				}
 			}
 			cout << "-----------------------" << endl;
