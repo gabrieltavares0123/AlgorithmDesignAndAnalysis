@@ -1,4 +1,4 @@
-// DepthFirstSearch.cpp : Este arquivo contém a função 'main'. A execução do programa começa e termina ali.
+// UniformCostSearch.cpp : Este arquivo contém a função 'main'. A execução do programa começa e termina ali.
 //
 
 #include <iostream>
