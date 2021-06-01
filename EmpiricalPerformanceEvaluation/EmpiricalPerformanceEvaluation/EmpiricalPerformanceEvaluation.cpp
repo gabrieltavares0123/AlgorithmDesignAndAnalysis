@@ -23,7 +23,7 @@ std::vector<int> getRandomVector(int vectorSize)
 
 int main()
 {
-    int startingVectorSize = 2000;
+    int startingVectorSize = 1000;
     int iterationsCount = 5;
 
     BubbleSort* bubbleSort = new BubbleSort();
@@ -34,7 +34,7 @@ int main()
     std::cout << "--------Starting Bubble sort measures-----------" << std::endl;
     std::cout << "-----------------------------------------------" << std::endl;
 
-    for (int i = 0; i <= iterationsCount; i++)
+    for (int i = 0; i < iterationsCount; i++)
     {
         int currentVectorSizeIteration = std::pow(2, i) * startingVectorSize;
         std::vector<int> vctr = getRandomVector(currentVectorSizeIteration);
@@ -57,7 +57,7 @@ int main()
     std::cout << "--------Starting Merge sort measures-----------" << std::endl;
     std::cout << "-----------------------------------------------" << std::endl;
     
-    for (int j = 0; j <= iterationsCount; j++)
+    for (int j = 0; j < iterationsCount; j++)
     {
         int currentVectorSizeIteration = std::pow(2, j) * startingVectorSize;
         std::vector<int> vctr = getRandomVector(currentVectorSizeIteration);
