@@ -46,7 +46,7 @@ void performBubbleSortMeasures(int startingSize, int iteractions)
         // Prepare for the next iteration.
         if (prevTime > 0)
         {
-            std::cout << duration.count() / prevTime << std:: endl;
+            std::cout << "d = " << duration.count() / prevTime << std:: endl;
         }
         prevTime = duration.count();
         inputSize = 2 * inputSize;
