@@ -4,11 +4,6 @@
 #include "BubbleSort.h"
 #include "MergeSort.h"
 
-int getVectorSize(int iterationNumber, int vectorSize)
-{
-    return std::floor(std::pow(2, vectorSize));
-}
-
 std::vector<int> getRandomVector(int vectorSize)
 {
     std::vector<int> vctr;
@@ -21,25 +16,22 @@ std::vector<int> getRandomVector(int vectorSize)
     return vctr;
 }
 
-int main()
+void performBubbleSortMeasures(int startingSize, int iteractions)
 {
-    int startingVectorSize = 1000;
-    int iterationsCount = 5;
-
     BubbleSort* bubbleSort = new BubbleSort();
-    MergeSort* mergeSort = new MergeSort();
+    int inputSize = startingSize;
+    long long prevTime = 0;
 
     // Bubble sort measures.
     std::cout << "-----------------------------------------------" << std::endl;
     std::cout << "--------Starting Bubble sort measures-----------" << std::endl;
     std::cout << "-----------------------------------------------" << std::endl;
 
-    for (int i = 0; i < iterationsCount; i++)
+    for (int i = 0; i < iteractions; i++)
     {
-        int currentVectorSizeIteration = std::pow(2, i) * startingVectorSize;
-        std::vector<int> vctr = getRandomVector(currentVectorSizeIteration);
-        std::cout << "Iteration: " << i << " " << "with vector size " << currentVectorSizeIteration << "..." << std::endl;
-        
+        std::vector<int> vctr = getRandomVector(inputSize);
+        std::cout << "Iteration: " << i + 1 << " " << "with vector size " << inputSize << "..." << std::endl;
+
         // Start clock.
         auto initialTime = std::chrono::high_resolution_clock::now();
         // Processes search.
@@ -50,23 +42,37 @@ int main()
 
         std::cout << "Ended with time: " << duration.count() << "." << std::endl;
         std::cout << std::endl;
+
+        // Prepare for the next iteration.
+        if (prevTime > 0)
+        {
+            std::cout << duration.count() / prevTime << std:: endl;
+        }
+        prevTime = duration.count();
+        inputSize = 2 * inputSize;
     }
+}
+
+void performMergeSortMeasures(int startingSize, int iteractions)
+{
+    MergeSort* mergeSort = new MergeSort();
+    int inputSize = startingSize;
+    long long prevTime = 0;
 
     // Merge sort measures.
     std::cout << "-----------------------------------------------" << std::endl;
     std::cout << "--------Starting Merge sort measures-----------" << std::endl;
     std::cout << "-----------------------------------------------" << std::endl;
-    
-    for (int j = 0; j < iterationsCount; j++)
+
+    for (int j = 0; j < iteractions; j++)
     {
-        int currentVectorSizeIteration = std::pow(2, j) * startingVectorSize;
-        std::vector<int> vctr = getRandomVector(currentVectorSizeIteration);
-        std::cout << "Iteration: " << j << " " << "with vector size " << currentVectorSizeIteration << "..." << std::endl;
+        std::vector<int> vctr = getRandomVector(inputSize);
+        std::cout << "Iteration: " << j + 1 << " " << "with vector size " << inputSize << "..." << std::endl;
 
         // Start clock.
         auto initialTime = std::chrono::high_resolution_clock::now();
         // Processes search.
-        mergeSort->mergeSort(vctr, 0, vctr.size()-1);
+        mergeSort->mergeSort(vctr, 0, vctr.size() - 1);
         // Calculate resulting time in seconds.
         // Calculate resulting time in seconds.
         auto endTime = std::chrono::high_resolution_clock::now();
@@ -74,7 +80,24 @@ int main()
 
         std::cout << "Ended with time: " << duration.count() << "." << std::endl;
         std::cout << std::endl;
+
+        // Prepare for the next iteration.
+        if (prevTime > 0)
+        {
+            std::cout << "d = " << duration.count() / prevTime << std::endl;
+        }
+        prevTime = duration.count();
+        inputSize = 2 * inputSize;
     }
+}
+
+int main()
+{
+    int startingSize = 25;
+    int iteractions = 15;
+
+    performBubbleSortMeasures(startingSize, iteractions);
+    performMergeSortMeasures(startingSize, iteractions);
 
     return 0;
 }
