@@ -4,6 +4,47 @@
 #include "BubbleSort.h"
 #include "MergeSort.h"
 
+int recursiveSum(int num)
+{
+    if (num <= 1)
+    {
+        return 1;
+    }
+    else
+    {
+        return recursiveSum(num - 1) + recursiveSum(num - 1);
+    }
+}
+
+void performRecusriveSumMeasures(int startingSize, int iteractions)
+{
+    int inputSize = startingSize;
+    long long prevTime = 0;
+
+    // Recursive sim measures.
+    std::cout << "-----------------------------------------------" << std::endl;
+    std::cout << "--------Starting Recusrsive sum measures-----------" << std::endl;
+    std::cout << "-----------------------------------------------" << std::endl;
+
+    for (int i = 0; i < iteractions; i++)
+    {
+        std::cout << "Iteration: " << i + 1 << " " << "with vector size " << inputSize << "..." << std::endl;
+
+        // Start clock.
+        auto initialTime = std::chrono::high_resolution_clock::now();
+        // Processes sum.
+        recursiveSum(inputSize);
+        // Calculate resulting time in seconds.
+        auto endTime = std::chrono::high_resolution_clock::now();
+        std::chrono::duration<double> duration = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - initialTime);
+
+        std::cout << "Ended with time: " << duration.count() << "." << std::endl;
+        std::cout << std::endl;
+
+        inputSize++;
+    }
+}
+
 std::vector<int> getRandomVector(int vectorSize)
 {
     std::vector<int> vctr;
@@ -93,11 +134,14 @@ void performMergeSortMeasures(int startingSize, int iteractions)
 
 int main()
 {
-    int startingSize = 25;
-    int iteractions = 15;
+    int startingSize = 1;
+    int iteractions = 32;
 
-    performBubbleSortMeasures(startingSize, iteractions);
-    performMergeSortMeasures(startingSize, iteractions);
+    //performBubbleSortMeasures(startingSize, iteractions);
+    //performMergeSortMeasures(startingSize, iteractions);
+
+    // WARNING: Nerver perform that measure with large numbers or you will have to wait until death.
+    performRecusriveSumMeasures(startingSize, iteractions);
 
     return 0;
 }
