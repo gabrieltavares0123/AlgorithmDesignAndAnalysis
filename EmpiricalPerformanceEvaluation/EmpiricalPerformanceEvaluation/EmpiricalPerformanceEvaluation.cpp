@@ -34,7 +34,7 @@ void performRecusriveSumMeasures(int startingSize, int iteractions)
         auto initialTime = std::chrono::high_resolution_clock::now();
         // Processes sum.
         recursiveSum(inputSize);
-        // Calculate resulting time in seconds.
+        // Calculate resulting time in milliseconds.
         auto endTime = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> duration = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - initialTime);
 
@@ -57,7 +57,7 @@ std::vector<int> getRandomVector(int vectorSize)
     return vctr;
 }
 
-void performBubbleSortMeasures(int startingSize, int iteractions)
+void performBubbleSortMeasures(int startingSize, int iterations)
 {
     BubbleSort* bubbleSort = new BubbleSort();
     int inputSize = startingSize;
@@ -68,7 +68,7 @@ void performBubbleSortMeasures(int startingSize, int iteractions)
     std::cout << "--------Starting Bubble sort measures-----------" << std::endl;
     std::cout << "-----------------------------------------------" << std::endl;
 
-    for (int i = 0; i < iteractions; i++)
+    for (int i = 0; i < iterations; i++)
     {
         std::vector<int> vctr = getRandomVector(inputSize);
         std::cout << "Iteration: " << i + 1 << " " << "with vector size " << inputSize << "..." << std::endl;
@@ -77,7 +77,7 @@ void performBubbleSortMeasures(int startingSize, int iteractions)
         auto initialTime = std::chrono::high_resolution_clock::now();
         // Processes search.
         bubbleSort->bubbleSort(vctr);
-        // Calculate resulting time in seconds.
+        // Calculate resulting time in milliseconds.
         auto endTime = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> duration = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - initialTime);
 
@@ -94,7 +94,7 @@ void performBubbleSortMeasures(int startingSize, int iteractions)
     }
 }
 
-void performMergeSortMeasures(int startingSize, int iteractions)
+void performMergeSortMeasures(int startingSize, int iterations)
 {
     MergeSort* mergeSort = new MergeSort();
     int inputSize = startingSize;
@@ -105,7 +105,7 @@ void performMergeSortMeasures(int startingSize, int iteractions)
     std::cout << "--------Starting Merge sort measures-----------" << std::endl;
     std::cout << "-----------------------------------------------" << std::endl;
 
-    for (int j = 0; j < iteractions; j++)
+    for (int j = 0; j < iterations; j++)
     {
         std::vector<int> vctr = getRandomVector(inputSize);
         std::cout << "Iteration: " << j + 1 << " " << "with vector size " << inputSize << "..." << std::endl;
@@ -114,8 +114,7 @@ void performMergeSortMeasures(int startingSize, int iteractions)
         auto initialTime = std::chrono::high_resolution_clock::now();
         // Processes search.
         mergeSort->mergeSort(vctr, 0, vctr.size() - 1);
-        // Calculate resulting time in seconds.
-        // Calculate resulting time in seconds.
+        // Calculate resulting time in milliseconds.
         auto endTime = std::chrono::high_resolution_clock::now();
         std::chrono::duration<double> duration = std::chrono::duration_cast<std::chrono::milliseconds>(endTime - initialTime);
 
@@ -135,13 +134,13 @@ void performMergeSortMeasures(int startingSize, int iteractions)
 int main()
 {
     int startingSize = 1;
-    int iteractions = 32;
+    int iterations = 32;
 
     //performBubbleSortMeasures(startingSize, iteractions);
     //performMergeSortMeasures(startingSize, iteractions);
 
     // WARNING: Nerver perform that measure with large numbers or you will have to wait until death.
-    performRecusriveSumMeasures(startingSize, iteractions);
+    performRecusriveSumMeasures(startingSize, iterations);
 
     return 0;
 }
