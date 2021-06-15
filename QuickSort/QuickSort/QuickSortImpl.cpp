@@ -14,26 +14,28 @@ void QuickSort::partition(std::vector<int>& vctr, int first, int last)
 	int i = first + 1;
 	int j = last;
 
-	while (j >= i)
-	{
-		if (vctr[i] <= pivot)
+	if (vctr.size() > 1) {
+		while (j >= i)
 		{
-			i++;
-		} 
-		else if (vctr[j] > pivot)
-		{
-			j--;
+			if (vctr[i] <= pivot)
+			{
+				i++;
+			}
+			else if (vctr[j] > pivot)
+			{
+				j--;
+			}
+			else
+			{
+				this->swap(vctr[i], vctr[j]);
+				i++;
+				j--;
+			}
 		}
-		else
-		{
-			this->swap(vctr[i], vctr[j]);
-			i++;
-			j--;
-		}
+		this->swap(vctr[first], vctr[j]);
+		std::cout << std::endl;
+		std::cout << j << std::endl;
 	}
-	this->swap(vctr[first], vctr[j]);
-	std::cout << std::endl;
-	std::cout << j << std::endl;
 }
 
 void QuickSort::quickSort(std::vector<int>& vctr, int first, int last)
