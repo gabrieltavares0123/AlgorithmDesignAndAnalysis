@@ -20,6 +20,19 @@ int bfIntegerPower(int b, int n)
     return temp;
 }
 
+// Brute force recursive.
+int bfrIntegerPower(int b, int n)
+{
+    if (n == 1)
+    {
+        return b;
+    }
+    else
+    {
+        return b * bfrIntegerPower(b, (n - 1));
+    }
+}
+
 // Divide and conquer algorithm.
 int dcIntegerPower(int b, int n)
 {
@@ -60,6 +73,9 @@ int main()
 
     int result = bfIntegerPower(b, n);
     std::cout << "Brute force: " << result << "." << std::endl;
+
+    result = bfrIntegerPower(b, n);
+    std::cout << "Brute force recursive: " << result << "." << std::endl;
 
     result = dcIntegerPower(b, n);
     std::cout << "Divide and conquer: " << result << "." << std::endl;
